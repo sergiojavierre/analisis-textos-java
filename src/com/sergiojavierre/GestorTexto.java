@@ -10,9 +10,10 @@ public class GestorTexto {
 
     public GestorTexto(String texto) {
         this.texto = texto;
+        separarPalabras();
     }
 
-    public void separarPalabras(){
+    private void separarPalabras(){
         texto = texto.toLowerCase(Locale.ROOT);
         List<String> caracteres = new ArrayList<>(List.of(".",",",";",":","–","?","¿","!","¡","(",")","\n","{","}","-","»","«"));
         for (String caracter:caracteres){
@@ -23,7 +24,7 @@ public class GestorTexto {
         buscarpalabra();
     }
 
-    private void contarTodasPalabras(){
+    public void contarTodasPalabras(){
 
         for (int i = 0; i < palabras.length; i++) {
             //System.out.println(separar[i]);
@@ -42,7 +43,7 @@ public class GestorTexto {
  */
     }
 
-    private void buscarpalabra(){
+    public void buscarpalabra(){
         String palabra = "d";
         if (mapaPalabras.containsKey(palabra)){
             System.out.println(palabra+" "+mapaPalabras.get(palabra));
