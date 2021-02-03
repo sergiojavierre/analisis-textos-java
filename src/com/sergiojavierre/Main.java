@@ -3,10 +3,7 @@ package com.sergiojavierre;
 import com.sergiojavierre.lector.Lector;
 import com.sergiojavierre.lector.LectorTXT;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
@@ -14,13 +11,15 @@ public class Main {
         // write your code here
         Lector lector = new LectorTXT();
         String texto = lector.lee("el_quijote.txt");
-        List<String> caracteres = new ArrayList<>(List.of(".",",",";",":","–","?","¿","!","¡","(",")"));
+        texto = texto.toLowerCase(Locale.ROOT);
+        List<String> caracteres = new ArrayList<>(List.of(".",",",";",":","–","?","¿","!","¡","(",")","\n"));
         for (String caracter:caracteres){
             texto = texto.replace(caracter,"");
         }
+       // texto = texto.replaceAll("",""") //uso con expresiones
 
         String[] separar = texto.split(" ");
-        HashMap<String, Integer> mapaPalabras = new HashMap<>(separar.length);
+        LinkedHashMap<String, Integer> mapaPalabras = new LinkedHashMap<>();
         for (int i = 0; i < separar.length; i++) {
             //System.out.println(separar[i]);
             if (mapaPalabras.containsKey(separar[i])){
@@ -30,7 +29,13 @@ public class Main {
                 mapaPalabras.put(separar[i],1);
             }
         }
-        System.out.println(mapaPalabras);
+        System.out.println(mapaPalabras.keySet());
+/*
+        for (Object key:mapaPalabras.keySet()){
+            System.out.println(key);
+        }
+        */
+
 
     }
 }
